@@ -204,9 +204,9 @@ function loadSingleQuestion() {
         <div class="options-box">
             ${options.map(opt => `
                 <label class="option-card">
+				<span class="check-icon">￭  &nbsp </span>	
                     <input type="radio" name="answer" value="${opt.index}">
                     <span class="option-text">${opt.text}</span>
-                    <span class="check-icon">✔</span>
                 </label>
             `).join("")}
         </div>
@@ -487,4 +487,5 @@ function downloadScholarshipPDF() {
     // Save PDF
     doc.save(`TBS_Scholarship_Letter_${student.nic}.pdf`);
 }
+
 
