@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TBS Online Exam System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="top-bar">
+    <div class="brand">
+        <h1>TBS International Campus</h1>
+        <p>Diploma in Software Engineering & Artificial Intelligence</p>
+    </div>
+</header>
+
+<main class="app-container">
+
+    <!-- LOGIN CARD -->
+    <section id="loginBox" class="card fade-in">
+        <h2>Student Login</h2>
+        <p class="subtitle">Please enter your details to begin the aptitude test</p>
+
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" id="name" placeholder="Eg: Ishara Ubeykoon">
+        </div>
+
+        <div class="form-group">
+            <label>NIC Number</label>
+            <input type="text" id="nic" placeholder="Eg: 200012345678">
+        </div>
+
+        <div class="form-group">
+            <label>Phone Number</label>
+            <input type="text" id="phone" placeholder="Eg: 071XXXXXXX">
+        </div>
+
+        <button class="primary-btn" onclick="startExam()">Start Exam</button>
+
+        <p class="note">
+            ⏱ Duration: 30 Minutes &nbsp; | &nbsp; 📝 Total Marks: 100
+        </p>
+    </section>
+
+    <!-- EXAM CARD -->
+    <section id="examBox" class="card hidden fade-in">
+        <div class="exam-header">
+            <h2>Aptitude Test</h2>
+            <div class="timer-box">
+                ⏳ Time Left: <span id="timer">30:00</span>
+            </div>
+        </div>
+
+        <form id="examForm" class="question-area"></form>
+
+        <div class="action-bar">
+            <button id="submitBtn" class="danger-btn hidden" onclick="confirmSubmit()">
+            Submit Exam
+            </button>
+        </div>
+    </section>
+
+    <!-- RESULT CARD -->
+   
+
+<section id="resultBox" class="card hidden fade-in result-card">
+
+    <h2 id="resultTitle">Exam Result</h2>
+
+    <div class="result-score">
+        <span id="scoreText"></span>
+    </div>
+
+    <div class="result-status">
+        <span id="statusText"></span>
+    </div>
+
+    <!-- 🎉 SCHOLARSHIP MESSAGE -->
+    <div id="scholarshipBox" class="scholarship hidden">
+        <h3>🎉 Congratulations!</h3>
+        <p class="scholarship-text">
+            You have successfully passed the aptitude test and are
+            <strong>awarded a 50% Scholarship</strong> to enroll in the
+            <strong>Diploma in Software Engineering with- Artificial Intelligence</strong>
+            at <strong>TBS International Campus</strong>.
+        </p>
+
+        <div class="scholarship-badge">
+            🎓 50% SCHOLARSHIP OFFERED
+        </div>
+
+	 <button class="primary-btn" onclick="downloadScholarshipPDF()">
+           📄 Download Scholarship Letter (PDF)
+         </button>
+
+
+        <p class="next-step">
+            📞 Our admissions team will contact you soon.<br>
+            Or call us directly to secure your seat.
+        </p>
+    </div>
+
+    <!-- ❌ FAIL MESSAGE -->
+    <div id="failBox" class="fail-message hidden">
+        <p>
+            Thank you for attending the aptitude test.<br>
+            We encourage you to speak with our academic advisors for
+            guidance on suitable pathways.
+        </p>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+</main>
+
+<footer class="footer">
+    © 2025 TBS International Campus · Online Examination System
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>

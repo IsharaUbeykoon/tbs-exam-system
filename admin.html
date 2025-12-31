@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TBS Admin – Exam Results</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+<style>
+body {
+  font-family: Inter, sans-serif;
+  background: #0f172a;
+  color: white;
+  padding: 30px;
+}
+h1 { text-align: center; }
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  color: #0f172a;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: linear-gradient(90deg, #2563eb, #1d4ed8);
+  color: white;
+  padding: 14px;
+  font-size: 14px;
+}
+
+tbody tr {
+  transition: all 0.2s ease;
+}
+
+tbody tr:hover {
+  background: #f1f5f9;
+  transform: scale(1.005);
+}
+
+td {
+  padding: 14px;
+  border-bottom: 1px solid #e5e7eb;
+  font-size: 14px;
+}
+
+
+
+
+
+
+
+
+.pass { color: green; font-weight: bold; }
+.fail { color: red; font-weight: bold; }
+.hidden { display: none; }
+input {
+  padding: 10px;
+  width: 250px;
+}
+
+button {
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+
+
+
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 25px 0;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  padding: 18px;
+  border-radius: 14px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.stat-title {
+  font-size: 13px;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+.stat-value {
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: 6px;
+}
+
+.stat-card.pass .stat-value { color: #22c55e; }
+.stat-card.fail .stat-value { color: #ef4444; }
+
+
+
+
+.status-badge {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.status-badge.pass {
+  background: #dcfce7;
+  color: #166534;
+}
+
+.status-badge.fail {
+  background: #fee2e2;
+  color: #991b1b;
+}
+
+
+
+
+
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.export-btn {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  border: none;
+  color: white;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+
+.export-btn:hover {
+  opacity: 0.9;
+}
+
+
+
+
+
+/* ===== Toggle Switch ===== */
+
+.toggle-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 14px;
+  font-weight: 500;
+  color: #e5e7eb;
+}
+
+.toggle-switch input {
+  display: none;
+}
+
+.toggle-switch .slider {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  background: #334155;
+  border-radius: 999px;
+  transition: background 0.3s ease;
+  box-shadow: inset 0 0 0 2px rgba(255,255,255,0.05);
+}
+
+/* Knob */
+.toggle-switch .slider::before {
+  content: "";
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  left: 3px;
+  top: 3px;
+  background: white;
+  border-radius: 50%;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* Checked state */
+.toggle-switch input:checked + .slider {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.toggle-switch input:checked + .slider::before {
+  transform: translateX(24px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.35);
+}
+
+/* Hover effect */
+.toggle-switch:hover .slider::before {
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+/* Text label */
+.toggle-label {
+  opacity: 0.9;
+}
+
+
+
+
+
+/* ===== Toggle ON Text Glow ===== */
+
+.toggle-switch input:checked ~ .toggle-label {
+  color: #22c55e;
+  text-shadow:
+    0 0 6px rgba(34, 197, 94, 0.6),
+    0 0 12px rgba(34, 197, 94, 0.4);
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+
+
+
+</style>
+
+
+
+
+
+
+
+</head>
+<body>
+
+<h1>📊 TBS Exam Admin Panel</h1>
+
+<div id="loginBox">
+  <p>Enter Admin Password</p>
+  <input type="password" id="adminPass" placeholder="Password">
+  <button onclick="login()">Login</button>
+</div>
+
+
+<!-------  Status Bar   ---------------------------------------------------------->
+
+
+<div id="dataBox" class="hidden">
+
+
+<div class="stats-bar">
+  <div class="stat-card">
+    <div class="stat-title">Total Students</div>
+    <div class="stat-value" id="totalCount">0</div>
+  </div>
+  <div class="stat-card pass">
+    <div class="stat-title">PASS</div>
+    <div class="stat-value" id="passCount">0</div>
+  </div>
+  <div class="stat-card fail">
+    <div class="stat-title">FAIL</div>
+    <div class="stat-value" id="failCount">0</div>
+  </div>
+</div>
+
+
+
+<div class="toolbar">
+  
+<label class="toggle-switch">
+  <input type="checkbox" id="passOnlyToggle" onchange="renderTable()">
+  <span class="slider"></span>
+  <span class="toggle-label">Show PASS only</span>
+</label>
+
+  <button class="export-btn" onclick="exportCSV()">
+    ⬇ Export CSV
+  </button>
+</div>
+
+
+
+
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>NIC</th>
+        <th>Phone</th>
+        <th>Marks</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody id="resultBody"></tbody>
+  </table>
+</div>
+
+
+
+
+
+
+
+<script>
+
+
+const ADMIN_PASSWORD = "123";
+let allResults = []; // 🔹 store full dataset
+
+function login() {
+  if (document.getElementById("adminPass").value === ADMIN_PASSWORD) {
+    document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("dataBox").classList.remove("hidden");
+    loadResults();
+  } else {
+    alert("Wrong password");
+  }
+}
+
+function loadResults() {
+  fetch("https://script.google.com/macros/s/AKfycbx1C29tREY-yl8-ecFWzECeRodzlnsKOtNBzpslVWV14IJmS5PG3wZMS0mGcrGIp9Zf/exec")
+    .then(res => res.json())
+    .then(data => {
+      allResults = data;
+      renderTable();
+    });
+}
+
+
+
+
+
+function renderTable() {
+  const body = document.getElementById("resultBody");
+  const passOnly = document.getElementById("passOnlyToggle").checked;
+
+  body.innerHTML = "";
+
+
+  document.getElementById("totalCount").innerText = allResults.length;
+  document.getElementById("passCount").innerText =
+  allResults.filter(r => r.status === "PASS").length;
+  document.getElementById("failCount").innerText =
+  allResults.filter(r => r.status === "FAIL").length;
+
+
+  allResults
+    .filter(r => !passOnly || r.status === "PASS")
+    .forEach(r => {
+      body.innerHTML += `
+  <tr>
+    <td>${r.name || ""}</td>
+    <td>${r.nic}</td>
+    <td>${r.phone}</td>
+    <td>${r.mark}</td>
+    <td>
+      <span class="status-badge ${r.status === 'PASS' ? 'pass' : 'fail'}">
+        ${r.status}
+      </span>
+    </td>
+  </tr>
+`;
+    });
+}
+
+
+
+
+
+
+function exportCSV() {
+  const passOnly = document.getElementById("passOnlyToggle").checked;
+
+  const rows = [
+    ["Name", "NIC", "Phone", "Mark", "Status"]
+  ];
+
+  allResults
+    .filter(r => !passOnly || r.status === "PASS")
+    .forEach(r => {
+      rows.push([
+        r.name || "",
+        r.nic,
+        r.phone,
+        r.mark,
+        r.status
+      ]);
+    });
+
+  let csvContent = rows.map(e => e.join(",")).join("\n");
+
+  const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+  const url = URL.createObjectURL(blob);
+
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("download", "TBS_Exam_Results.csv");
+  document.body.appendChild(link);
+  link.click();
+  document.body.removeChild(link);
+}
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+</body>
+</html>
