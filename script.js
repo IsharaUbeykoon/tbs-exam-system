@@ -4,7 +4,7 @@ let currentQuestionIndex = 0;
 let studentAnswers = [];
 
 
- /*
+/*
 
 //Prevent refresh and re-entry during exam -------------------------------
 
@@ -22,9 +22,9 @@ window.onbeforeunload = function () {
 };
 //-------------------------------------------------------------------------
 
-*/
 
- 
+
+*/
 
 
 // Utility function to shuffle array
@@ -550,7 +550,6 @@ function downloadScholarshipPDF() {
 
     doc.save(`TBS_Scholarship_Letter_${student.nic}.pdf`);
 }
-
 
 
 
