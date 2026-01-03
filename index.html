@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
+
+ 
 <head>
     <meta charset="UTF-8">
     <title>TBS Online Exam System</title>
@@ -10,12 +12,19 @@
 
     <link rel="stylesheet" href="style.css">
 </head>
+
+ 
+
+
 <body>
 
 <header class="top-bar">
-    <div class="brand">
-        <h1>TBS International Campus</h1>
-        <p>Diploma in Software Engineering & Artificial Intelligence</p>
+    <div class="brand-wrapper">
+        <img src="Logo.png" alt="TBS International Campus Logo" class="brand-logo">
+        <div class="brand-text">
+            <h1>TBS International Campus</h1>
+            <p>Diploma in Software Engineering with Artificial Intelligence</p>
+        </div>
     </div>
 </header>
 
@@ -28,12 +37,12 @@
 
         <div class="form-group">
             <label>Full Name</label>
-            <input type="text" id="name" placeholder="Eg: Ishara Ubeykoon">
+            <input type="text" id="name" placeholder="Eg: FirstName LastName">
         </div>
 
         <div class="form-group">
             <label>NIC Number</label>
-            <input type="text" id="nic" placeholder="Eg: 200012345678">
+            <input type="text" id="nic" placeholder="Eg: 200012XXXXXX">
         </div>
 
         <div class="form-group">
@@ -122,13 +131,10 @@
 
 
 
-
-
-
 </main>
 
 <footer class="footer">
-    © 2025 TBS International Campus · Online Examination System
+    © 2026 TBS International Campus · Faculty of Information Technology · Online Examination System
 </footer>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
