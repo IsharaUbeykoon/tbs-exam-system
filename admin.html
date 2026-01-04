@@ -33,6 +33,7 @@ thead th {
   color: white;
   padding: 14px;
   font-size: 14px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
 
 tbody tr {
@@ -44,13 +45,24 @@ tbody tr:hover {
   transform: scale(1.005);
 }
 
+
+tbody tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+
 td {
   padding: 14px;
   border-bottom: 1px solid #e5e7eb;
   font-size: 14px;
 }
 
-
+td:first-child {
+  font-weight: 600;
+}
+td:nth-child(4) {
+  font-weight: 700;
+}
 
 
 
@@ -60,6 +72,7 @@ td {
 .pass { color: green; font-weight: bold; }
 .fail { color: red; font-weight: bold; }
 .hidden { display: none; }
+
 input {
   padding: 10px;
   width: 250px;
@@ -81,29 +94,52 @@ button {
 }
 
 .stat-card {
-  background: linear-gradient(135deg, #1e293b, #0f172a);
-  padding: 18px;
-  border-radius: 14px;
-  text-align: center;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  background: linear-gradient(135deg, #020617, #020617cc);
+  border-radius: 18px;
+  padding: 24px 26px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.45);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.stat-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.08),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.8s;
+}
+
+.stat-card:hover::after {
+  transform: translateX(100%);
 }
 
 .stat-title {
-  font-size: 13px;
-  letter-spacing: 1px;
-  opacity: 0.7;
+  font-size: 12px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  opacity: 0.8;
 }
 
 .stat-value {
-  font-size: 32px;
-  font-weight: 700;
-  margin-top: 6px;
+  font-size: 40px;
+  font-weight: 800;
+  margin-top: 10px;
 }
 
 .stat-card.pass .stat-value { color: #22c55e; }
 .stat-card.fail .stat-value { color: #ef4444; }
 
-
+.stat-card .stat-value {
+  color: #e5e7eb;
+}
 
 
 .status-badge {
@@ -111,7 +147,8 @@ button {
   border-radius: 999px;
   font-weight: 600;
   font-size: 12px;
-  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
 }
 
 .status-badge.pass {
@@ -234,6 +271,164 @@ button {
 
 
 
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, #020617, #0f172a);
+  padding: 20px 26px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+}
+
+.admin-header h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.admin-header p {
+  margin: 4px 0 0;
+  font-size: 13px;
+  opacity: 0.7;
+}
+
+.logout-btn {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+
+.stat-icon {
+  position: absolute;
+  bottom: 14px;
+  right: 16px;
+  font-size: 28px;
+  opacity: 0.15;
+}
+
+
+
+.toolbar-card {
+  background: #020617;
+  padding: 18px 22px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+
+
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  font-size: 15px;
+  color: #6b7280;
+}
+
+
+
+.admin-footer {
+  margin-top: 40px;
+  text-align: center;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+
+
+
+
+
+
+
+.login-card {
+  max-width: 420px;
+  margin: 120px auto;
+  background: linear-gradient(180deg, #020617, #020617cc);
+  padding: 44px;
+  border-radius: 22px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+  text-align: center;
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.login-card h2 {
+  margin-bottom: 6px;
+  font-size: 22px;
+}
+
+.login-subtitle {
+  font-size: 13px;
+  opacity: 0.75;
+  margin-bottom: 26px;
+}
+
+.login-card input {
+  padding: 16px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  margin-bottom: 18px;
+}
+
+.login-card button {
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+
+
+.login-card input,
+.login-card button {
+  width: 100%;
+  box-sizing: border-box;
+  display: block;
+}
+
+
+
+
+.login-logo {
+  height: 70px;
+  margin-bottom: 18px;
+}
+
+
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+
+
+#adminHeader.hidden {
+  display: none;
+}
+
+
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(37,99,235,0.15), transparent 60%);
+  z-index: -1;
+}
+
+
 </style>
 
 
@@ -245,11 +440,22 @@ button {
 </head>
 <body>
 
-<h1>📊 TBS Exam Admin Panel</h1>
+<header class="admin-header hidden" id="adminHeader">
+  <div class="admin-brand">
+    <h1>📊 TBS Exam Admin Dashboard</h1>
+    <p>Online Aptitude Test Monitoring Panel</p>
+  </div>
 
-<div id="loginBox">
-  <p>Enter Admin Password</p>
-  <input type="password" id="adminPass" placeholder="Password">
+  <button class="logout-btn" onclick="logout()">Logout</button>
+</header>
+
+
+<div id="loginBox" class="login-card">
+<img src="Logo.png" class="login-logo" alt="TBS International Campus">
+  <h2>🔐 Admin Login</h2>
+  <p class="login-subtitle">Authorized access only</p>
+
+  <input type="password" id="adminPass" placeholder="Enter admin password">
   <button onclick="login()">Login</button>
 </div>
 
@@ -257,25 +463,35 @@ button {
 <!-------  Status Bar   ---------------------------------------------------------->
 
 
-<div id="dataBox" class="hidden">
+<div id="dataBox" class="hidden dashboard-container">
 
 
 <div class="stats-bar">
-  <div class="stat-card">
-    <div class="stat-title">Total Students</div>
-    <div class="stat-value" id="totalCount">0</div>
-  </div>
-  <div class="stat-card pass">
-    <div class="stat-title">PASS</div>
-    <div class="stat-value" id="passCount">0</div>
-  </div>
-  <div class="stat-card fail">
-    <div class="stat-title">FAIL</div>
-    <div class="stat-value" id="failCount">0</div>
-  </div>
+
+
+<div class="stat-card">
+  <div class="stat-title">Total Students</div>
+  <div class="stat-value" id="totalCount">0</div>
+  <div class="stat-icon">👥</div>
+</div>
+
+<div class="stat-card pass">
+  <div class="stat-title">PASS</div>
+  <div class="stat-value" id="passCount">0</div>
+  <div class="stat-icon">✔</div>
+</div>
+
+<div class="stat-card fail">
+  <div class="stat-title">FAIL</div>
+  <div class="stat-value" id="failCount">0</div>
+  <div class="stat-icon">✖</div>
 </div>
 
 
+</div>
+
+
+<div class="toolbar-card">
 
 <div class="toolbar">
   
@@ -288,6 +504,8 @@ button {
   <button class="export-btn" onclick="exportCSV()">
     ⬇ Export CSV
   </button>
+</div>
+
 </div>
 
 
@@ -304,8 +522,14 @@ button {
         <th>Status</th>
       </tr>
     </thead>
-    <tbody id="resultBody"></tbody>
+    <tbody id="resultBody">
+</tbody>
   </table>
+
+<p id="emptyState" class="hidden empty-state">
+  No results available yet.
+</p>
+
 </div>
 
 
@@ -317,18 +541,26 @@ button {
 <script>
 
 
-const ADMIN_PASSWORD = "Tbsexam@admin123";
+//const ADMIN_PASSWORD = "Tbsexam@admin123";
+const ADMIN_PASSWORD = "11111";
 let allResults = []; // 🔹 store full dataset
 
 function login() {
   if (document.getElementById("adminPass").value === ADMIN_PASSWORD) {
     document.getElementById("loginBox").classList.add("hidden");
     document.getElementById("dataBox").classList.remove("hidden");
+    document.getElementById("adminHeader").classList.remove("hidden");
     loadResults();
   } else {
     alert("Wrong password");
   }
 }
+
+
+function logout() {
+  location.reload();
+}
+
 
 function loadResults() {
   fetch("https://script.google.com/macros/s/AKfycbx1C29tREY-yl8-ecFWzECeRodzlnsKOtNBzpslVWV14IJmS5PG3wZMS0mGcrGIp9Zf/exec")
@@ -346,34 +578,47 @@ function loadResults() {
 function renderTable() {
   const body = document.getElementById("resultBody");
   const passOnly = document.getElementById("passOnlyToggle").checked;
+  const emptyState = document.getElementById("emptyState");
 
+  // Filter results based on toggle
+  const filtered = allResults.filter(
+    r => !passOnly || r.status === "PASS"
+  );
+
+  // Clear table
   body.innerHTML = "";
 
+  // Show / hide empty state
+  if (filtered.length === 0) {
+    emptyState.classList.remove("hidden");
+    return; // stop here, nothing to render
+  } else {
+    emptyState.classList.add("hidden");
+  }
 
+  // Update stats
   document.getElementById("totalCount").innerText = allResults.length;
   document.getElementById("passCount").innerText =
-  allResults.filter(r => r.status === "PASS").length;
+    allResults.filter(r => r.status === "PASS").length;
   document.getElementById("failCount").innerText =
-  allResults.filter(r => r.status === "FAIL").length;
+    allResults.filter(r => r.status === "FAIL").length;
 
-
-  allResults
-    .filter(r => !passOnly || r.status === "PASS")
-    .forEach(r => {
-      body.innerHTML += `
-  <tr>
-    <td>${r.name || ""}</td>
-    <td>${r.nic}</td>
-    <td>${r.phone}</td>
-    <td>${r.mark}</td>
-    <td>
-      <span class="status-badge ${r.status === 'PASS' ? 'pass' : 'fail'}">
-        ${r.status}
-      </span>
-    </td>
-  </tr>
-`;
-    });
+  // Render table rows
+  filtered.forEach(r => {
+    body.innerHTML += `
+      <tr>
+        <td>${r.name || ""}</td>
+        <td>${r.nic}</td>
+        <td>${r.phone}</td>
+        <td>${r.mark}</td>
+        <td>
+          <span class="status-badge ${r.status === 'PASS' ? 'pass' : 'fail'}">
+            ${r.status}
+          </span>
+        </td>
+      </tr>
+    `;
+  });
 }
 
 
@@ -426,5 +671,9 @@ function exportCSV() {
 
 
 </body>
-</html>
 
+<footer class="admin-footer">
+  © 2026 TBS International Campus · Exam Administration System
+</footer>
+
+</html>
