@@ -545,6 +545,79 @@ body::before {
 
 
 
+
+
+
+/* =========================
+   MOBILE RESPONSIVE FIXES
+   ========================= */
+@media (max-width: 768px) {
+
+  /* Header */
+  .admin-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .admin-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* Stats cards */
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  /* Toolbar */
+  .toolbar-card {
+    flex-direction: column;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .export-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Table wrapper */
+  .table-wrapper {
+    overflow-x: auto;
+  }
+
+  table {
+    min-width: 600px;
+  }
+
+  /* Reduce text sizes */
+  .stat-value {
+    font-size: 32px;
+  }
+
+  .admin-text h1 {
+    font-size: 18px;
+  }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
 </style>
 
 
@@ -634,6 +707,7 @@ body::before {
 
 
 
+<div class="table-wrapper">
 
   <table>
     <thead>
@@ -648,6 +722,12 @@ body::before {
     <tbody id="resultBody">
 </tbody>
   </table>
+
+
+</div>
+
+
+
 
 <p id="emptyState" class="hidden empty-state">
   No results available yet.
