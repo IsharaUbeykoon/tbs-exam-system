@@ -402,6 +402,26 @@ input:focus {
 
 
 
+.admin-link {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  font-size: 13px;
+  color: #9ca3af;
+  text-decoration: none;
+  border: 1px solid #334155;
+  padding: 6px 12px;
+  border-radius: 999px;
+  transition: all 0.2s ease;
+}
+
+.admin-link:hover {
+  background: #1e293b;
+  color: #ffffff;
+}
+
+
+
 
 
 
